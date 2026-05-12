@@ -84,7 +84,7 @@ GitPilfer/
 
 **Ultimo aggiornamento:** 2025-05-12
 
-**Codice stato:** `ST:F5/5:docs`
+**Codice stato:** `ST:F3/3:test-setup`
 
 - [x] `setup.sh` — installa struttura in un progetto esistente
 - [x] `resume.sh` — legge session.json, stampa contesto di ripresa
@@ -124,15 +124,19 @@ Rileggi la sezione 1 di questo file e verifica che il task pianificato sia coere
 - [2025-05-12] Nessuna dipendenza esterna oltre a python3 stdlib e gh CLI — il sistema deve funzionare out of the box su qualsiasi macchina Unix
 - [2025-05-12] I mini-CLAUDE non contengono contesto progetto — solo workflow. CLAUDE.md non contiene workflow — solo contesto. Nessuna sovrapposizione.
 - [2025-05-12] Il sanity check avviene **prima** di iniziare ogni nuovo mini-CLAUDE, non dopo
+- [2025-05-12] Gli script rilevano Python dinamicamente: `python3 → python → py` — necessario su Windows dove `python3` è intercettato dall'App Alias del Microsoft Store
+- [2025-05-12] Tutti i `open()` Python usano `encoding="utf-8"` esplicito — obbligatorio su Windows (default cp1252 rompe caratteri non-ASCII)
+- [2025-05-12] `gh` CLI si autentica via `GH_TOKEN` in `$HOME/.bash_profile` — non usare `gh auth login` (richiede scope `read:org` non sempre disponibile)
 
 **Cose da non fare:**
 - [2025-05-12] Non usare `~` nei path degli script — usare `$HOME`
 - [2025-05-12] Non mettere regole operative in CLAUDE.md base — stanno nei mini-CLAUDE
 - [2025-05-12] Non generare i mini-CLAUDE dinamicamente — sono template statici definiti a priori
+- [2025-05-12] Non usare `python3` hardcoded negli script — usare il rilevatore dinamico già presente in resume.sh e checkpoint.sh
 
 **Dipendenze già approvate:**
-- `python3` (stdlib: json, datetime, sys, os)
-- `gh` (GitHub CLI)
+- `python3` / `python` / `py` (stdlib: json, re, sys, os) — rilevato dinamicamente
+- `gh` (GitHub CLI) — auth via `GH_TOKEN`
 - `curl`
 - `git`
 
@@ -141,4 +145,4 @@ Rileggi la sezione 1 di questo file e verifica che il task pianificato sia coere
 
 ---
 
-*Ultima modifica: 2025-05-12 — briefing iniziale con Alessandro*
+*Ultima modifica: 2025-05-12 — prima sessione completa con Alessandro*
