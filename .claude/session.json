@@ -1,0 +1,21 @@
+{
+  "version": "1.0",
+  "progetto": "GitPilfer",
+  "stato": {
+    "codice": "ST:F0/5:init",
+    "tipo": "F",
+    "step": 0,
+    "totale": 5,
+    "task": "init"
+  },
+  "task_list": [
+    { "id": 1, "nome": "setup.sh",      "status": "todo" },
+    { "id": 2, "nome": "resume.sh",     "status": "todo" },
+    { "id": 3, "nome": "checkpoint.sh", "status": "todo" },
+    { "id": 4, "nome": "mini-claude",   "status": "todo" },
+    { "id": 5, "nome": "docs",          "status": "todo" }
+  ],
+  "mini_claude_attivo": ".claude/CLAUDE.feature.md",
+  "ultimo_aggiornamento": "2025-05-12T04:21:00Z",
+  "note": ""
+}
