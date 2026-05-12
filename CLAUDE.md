@@ -145,4 +145,4 @@ Rileggi la sezione 1 di questo file e verifica che il task pianificato sia coere
 
 ---
 
-*Ultima modifica: 2025-05-12 — prima sessione completa con Alessandro*
+*Ultima modifica: 2025-05-12 — prima sessione completa*
