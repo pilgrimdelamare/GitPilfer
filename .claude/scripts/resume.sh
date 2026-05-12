@@ -11,11 +11,20 @@ if [[ ! -f "$SESSION" ]]; then
   exit 1
 fi
 
-# Estrai i campi con python3 (stdlib, zero dipendenze)
-python3 - "$SESSION" <<'PYEOF'
+# Individua il binario Python 3 disponibile (compatibile Windows e Unix)
+PYTHON=""
+for _py in python3 python py; do
+  if command -v "$_py" &>/dev/null && "$_py" -c "import sys; assert sys.version_info[0]>=3" 2>/dev/null; then
+    PYTHON="$_py"
+    break
+  fi
+done
+[[ -n "$PYTHON" ]] || { echo "Errore: Python 3 non trovato." >&2; exit 1; }
+
+$PYTHON - "$SESSION" <<'PYEOF'
 import json, sys
 
-with open(sys.argv[1]) as f:
+with open(sys.argv[1], encoding="utf-8") as f:
     s = json.load(f)
 
 stato = s.get("stato", {})

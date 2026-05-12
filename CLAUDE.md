@@ -84,17 +84,17 @@ GitPilfer/
 
 **Ultimo aggiornamento:** 2025-05-12
 
-**Codice stato:** `ST:F0/5:init`
+**Codice stato:** `ST:F5/5:docs`
 
-- [ ] `setup.sh` — installa struttura in un progetto esistente
-- [ ] `resume.sh` — legge session.json, stampa contesto di ripresa
-- [ ] `checkpoint.sh` — aggiorna session.json + codice stato in CLAUDE.md
-- [ ] mini-CLAUDE files — CLAUDE.feature.md, CLAUDE.fix.md, CLAUDE.refactor.md
-- [ ] documentazione — README.md, docs/
+- [x] `setup.sh` — installa struttura in un progetto esistente
+- [x] `resume.sh` — legge session.json, stampa contesto di ripresa
+- [x] `checkpoint.sh` — aggiorna session.json + codice stato in CLAUDE.md
+- [x] mini-CLAUDE files — CLAUDE.feature.md, CLAUDE.fix.md, CLAUDE.refactor.md
+- [x] documentazione — README.md, docs/
 
-**Ultimo punto fermo:** repo non ancora creato, siamo alla fase di briefing
+**Ultimo punto fermo:** feature completa, tutti gli script testati e funzionanti
 
-**Prossimo task:** creare la struttura del repo e iniziare da `setup.sh`
+**Prossimo task:** nessuno — prima feature completata
 
 ---
 

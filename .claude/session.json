@@ -2,20 +2,20 @@
   "version": "1.0",
   "progetto": "GitPilfer",
   "stato": {
-    "codice": "ST:F0/5:init",
+    "codice": "ST:F5/5:docs",
     "tipo": "F",
-    "step": 0,
+    "step": 5,
     "totale": 5,
-    "task": "init"
+    "task": "docs"
   },
   "task_list": [
-    { "id": 1, "nome": "setup.sh",      "status": "todo" },
-    { "id": 2, "nome": "resume.sh",     "status": "todo" },
-    { "id": 3, "nome": "checkpoint.sh", "status": "todo" },
-    { "id": 4, "nome": "mini-claude",   "status": "todo" },
-    { "id": 5, "nome": "docs",          "status": "todo" }
+    { "id": 1, "nome": "setup.sh",      "status": "done" },
+    { "id": 2, "nome": "resume.sh",     "status": "done" },
+    { "id": 3, "nome": "checkpoint.sh", "status": "done" },
+    { "id": 4, "nome": "mini-claude",   "status": "done" },
+    { "id": 5, "nome": "docs",          "status": "done" }
   ],
   "mini_claude_attivo": ".claude/CLAUDE.feature.md",
-  "ultimo_aggiornamento": "2025-05-12T04:21:00Z",
-  "note": ""
+  "ultimo_aggiornamento": "2026-05-12T02:45:00Z",
+  "note": "Feature completa. Tutti gli script testati e funzionanti."
 }

@@ -13,7 +13,17 @@ if [[ -z "$ID" ]]; then
   exit 1
 fi
 
-python3 - "$INDEX" "$ID" <<'PYEOF'
+# Individua il binario Python 3 disponibile (compatibile Windows e Unix)
+PYTHON=""
+for _py in python3 python py; do
+  if command -v "$_py" &>/dev/null && "$_py" -c "import sys; assert sys.version_info[0]>=3" 2>/dev/null; then
+    PYTHON="$_py"
+    break
+  fi
+done
+[[ -n "$PYTHON" ]] || { echo "Errore: Python 3 non trovato." >&2; exit 1; }
+
+$PYTHON - "$INDEX" "$ID" <<'PYEOF'
 import json, sys
 
 index_path, snip_id = sys.argv[1], sys.argv[2]
