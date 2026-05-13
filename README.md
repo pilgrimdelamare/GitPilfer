@@ -120,7 +120,7 @@ MIT
 
 # GitPilfer — Italiano
 
-Una skill per Claude Code che cerca su GitHub soluzioni esistenti prima di scrivere codice da zero, e mantiene lo stato della sessione tra conversazioni.
+Una skill per Claude Code e Windsurf che cerca su GitHub soluzioni esistenti prima di scrivere codice da zero, e mantiene lo stato della sessione tra conversazioni.
 
 Cosa fa:
 - Cerca su GitHub codice riutilizzabile prima di iniziare qualsiasi task di tipo feature
