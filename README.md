@@ -8,6 +8,18 @@ What it does:
 - Resumes work between sessions without losing context
 - Creates task-specific workflow files (mini-CLAUDEs) on first run in a project
 
+## Benchmark
+
+Same project, built with and without GitPilfer:
+
+| | With GitPilfer | Without |
+|---|---|---|
+| User messages | 3 | 12 |
+| Tokens used | ~12k | ~20k |
+
+**75% fewer messages. 40% fewer tokens.**
+See [PriceWatch](https://github.com/pilgrimdelamare/pricewatch) — a real project built with GitPilfer in 3 messages.
+
 ---
 
 ## Install
@@ -100,6 +112,18 @@ Cosa fa:
 - Salva lo stato dopo ogni task con un codice compatto (es. `ST:F2/5:rate-limiter`)
 - Riprende il lavoro tra sessioni senza perdere contesto
 - Crea file di workflow specifici per tipo di task (mini-CLAUDE) al primo avvio in un progetto
+
+## Benchmark
+
+Stesso progetto, costruito con e senza GitPilfer:
+
+| | Con GitPilfer | Senza |
+|---|---|---|
+| Messaggi utente | 3 | 12 |
+| Token usati | ~12k | ~20k |
+
+**75% di messaggi in meno. 40% di token in meno.**
+Vedi [PriceWatch](https://github.com/pilgrimdelamare/pricewatch) — un progetto reale costruito con GitPilfer in 3 messaggi.
 
 ---
 
