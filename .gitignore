@@ -1,6 +1,0 @@
-# Backup temporanei creati dagli script
-*.bak.*
-
-# Editor e OS
-.DS_Store
-Thumbs.db
