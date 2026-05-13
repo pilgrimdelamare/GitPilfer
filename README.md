@@ -1,68 +1,56 @@
 # GitPilfer
 
-Structured session system for Claude Code.
+A Claude Code skill that searches GitHub for existing solutions before writing code from scratch, and maintains session state across conversations.
 
-Allows Claude Code to:
-- resume work across sessions without losing context
-- reuse code from GitHub instead of writing from scratch
-- track project state with compact, readable status codes
-
----
-
-## How it works
-
-```
-CLAUDE.md          ← project context + current status code
-.claude/
-  CLAUDE.*.md      ← mini-CLAUDEs: operational workflows (one per task type)
-  session.json     ← machine state (synced with CLAUDE.md)
-  scripts/
-    setup.sh       ← installs GitPilfer into an existing project
-    resume.sh      ← prints the resume context
-    checkpoint.sh  ← updates session.json + status code in CLAUDE.md
-docs/
-  stato-codici.md  ← status code format dictionary
-  mini-claude.md   ← how to create custom mini-CLAUDEs
-snippets/
-  index.json       ← reusable snippet cache
-  add-snippet.sh   ← adds a snippet to the cache
-  mark-tested.sh   ← marks a snippet as tested
-```
+What it does:
+- Searches GitHub for reusable code before starting any feature task
+- Saves session state after each task with a compact status code (e.g. `ST:F2/5:rate-limiter`)
+- Resumes work between sessions without losing context
+- Creates task-specific workflow files (mini-CLAUDEs) on first run in a project
 
 ---
 
-## Install into an existing project
+## Install
 
 ```bash
-# Clone GitPilfer
 git clone https://github.com/pilgrimdelamare/GitPilfer.git
-
-# Install into your project
-bash GitPilfer/.claude/scripts/setup.sh /path/to/your-project
+cp -r GitPilfer/gitpilfer ~/.claude/skills/
 ```
 
-Then fill in `CLAUDE.md` with your project context.
+Once installed, GitPilfer activates automatically in every Claude Code session on any project.
 
 ---
 
-## Resume a session
+## Set up a new project
 
-```bash
-bash .claude/scripts/resume.sh
+1. Copy `CLAUDE.md` from this repo into the root of your project
+2. Fill in the sections:
+
+```markdown
+## Obiettivo
+One sentence describing what the project does.
+
+## Stack
+- Linguaggio: Python
+- Framework: FastAPI
+- DB: PostgreSQL
+
+## File chiave
+- `src/main.py`: entry point
+- `src/models.py`: data models
+
+## Codice stato
+`ST:F0/0:init`
+
+## Stato attuale
+**Ultimo punto fermo:** —
+**Prossimo task:** —
+
+## Note specifiche
+- 2025-05-13: decided against using SQLAlchemy, too heavy
 ```
 
-Prints: status code, current step, task, active mini-CLAUDE.
-
----
-
-## Save a checkpoint
-
-```bash
-bash .claude/scripts/checkpoint.sh "ST:F2/5:setup-sh"
-bash .claude/scripts/checkpoint.sh "ST:X1/1:readme" "fix applied"
-```
-
-Updates `session.json` and the status code in `CLAUDE.md`.
+3. Start a Claude Code session — GitPilfer will initialize automatically.
 
 ---
 
@@ -78,19 +66,18 @@ ST:<type><step>/<total>:<task>
 | `X`  | Fix      |
 | `R`  | Refactor |
 
-Examples: `ST:F2/5:setup-sh` — `ST:X1/1:readme` — `ST:R3/4:scripts`
-
-See `docs/stato-codici.md` for the full reference.
+Examples:
+- `ST:F2/5:rate-limiter` — feature, step 2 of 5, working on rate limiter
+- `ST:X1/1:crash-auth` — fix, step 1 of 1, auth crash
+- `ST:R3/4:cleanup` — refactor, step 3 of 4, cleanup
 
 ---
 
 ## Requirements
 
 - `bash`
-- `python3` / `python` (stdlib: json, re, sys) — auto-detected
-- `git`
 - `curl`
-- `gh` (GitHub CLI) — optional, for snippet search on GitHub
+- `gh` (GitHub CLI) — optional, falls back to `curl` against the public GitHub API
 
 Zero npm/pip dependencies. Works on any Unix machine with bash.
 
@@ -106,69 +93,57 @@ MIT
 
 # GitPilfer — Italiano
 
-Sistema di sessioni strutturate per Claude Code.
+Una skill per Claude Code che cerca su GitHub soluzioni esistenti prima di scrivere codice da zero, e mantiene lo stato della sessione tra conversazioni.
 
-Permette a Claude Code di:
-- riprendere il lavoro tra sessioni senza perdere contesto
-- riciclare codice da GitHub invece di scriverlo da zero
-- mantenere lo stato del progetto in forma compatta e leggibile
-
----
-
-## Come funziona
-
-```
-CLAUDE.md          ← contesto progetto + codice stato corrente
-.claude/
-  CLAUDE.*.md      ← mini-CLAUDE: workflow operativi (uno per tipo di task)
-  session.json     ← stato macchina (sincronizzato con CLAUDE.md)
-  scripts/
-    setup.sh       ← installa GitPilfer in un progetto esistente
-    resume.sh      ← stampa il contesto di ripresa
-    checkpoint.sh  ← aggiorna session.json + codice stato in CLAUDE.md
-docs/
-  stato-codici.md  ← dizionario formato codici stato
-  mini-claude.md   ← come creare mini-CLAUDE custom
-snippets/
-  index.json       ← cache snippet riutilizzabili
-  add-snippet.sh   ← aggiunge uno snippet alla cache
-  mark-tested.sh   ← marca uno snippet come testato
-```
+Cosa fa:
+- Cerca su GitHub codice riutilizzabile prima di iniziare qualsiasi task di tipo feature
+- Salva lo stato dopo ogni task con un codice compatto (es. `ST:F2/5:rate-limiter`)
+- Riprende il lavoro tra sessioni senza perdere contesto
+- Crea file di workflow specifici per tipo di task (mini-CLAUDE) al primo avvio in un progetto
 
 ---
 
-## Installazione in un progetto esistente
+## Installazione
 
 ```bash
-# Clona GitPilfer
 git clone https://github.com/pilgrimdelamare/GitPilfer.git
-
-# Installa nel tuo progetto
-bash GitPilfer/.claude/scripts/setup.sh /percorso/tuo-progetto
+cp -r GitPilfer/gitpilfer ~/.claude/skills/
 ```
 
-Poi compila `CLAUDE.md` con il contesto del tuo progetto.
+Una volta installata, GitPilfer si attiva automaticamente in ogni sessione di Claude Code su qualsiasi progetto.
 
 ---
 
-## Riprendere una sessione
+## Configurare un nuovo progetto
 
-```bash
-bash .claude/scripts/resume.sh
+1. Copia `CLAUDE.md` da questo repo nella root del tuo progetto
+2. Compila le sezioni:
+
+```markdown
+## Obiettivo
+Una frase che descrive cosa fa il progetto.
+
+## Stack
+- Linguaggio: Python
+- Framework: FastAPI
+- DB: PostgreSQL
+
+## File chiave
+- `src/main.py`: entry point
+- `src/models.py`: modelli dati
+
+## Codice stato
+`ST:F0/0:init`
+
+## Stato attuale
+**Ultimo punto fermo:** —
+**Prossimo task:** —
+
+## Note specifiche
+- 2025-05-13: scelta di non usare SQLAlchemy, troppo pesante
 ```
 
-Stampa: codice stato, step corrente, task, mini-CLAUDE attivo.
-
----
-
-## Salvare un checkpoint
-
-```bash
-bash .claude/scripts/checkpoint.sh "ST:F2/5:setup-sh"
-bash .claude/scripts/checkpoint.sh "ST:X1/1:readme" "fix applicato"
-```
-
-Aggiorna `session.json` e il codice stato in `CLAUDE.md`.
+3. Avvia una sessione Claude Code — GitPilfer si inizializza automaticamente.
 
 ---
 
@@ -184,19 +159,18 @@ ST:<tipo><step>/<totale>:<task>
 | `X`  | Fix         |
 | `R`  | Refactor    |
 
-Esempi: `ST:F2/5:setup-sh` — `ST:X1/1:readme` — `ST:R3/4:scripts`
-
-Vedi `docs/stato-codici.md` per il dizionario completo.
+Esempi:
+- `ST:F2/5:rate-limiter` — feature, step 2 di 5, task: rate-limiter
+- `ST:X1/1:crash-auth` — fix, step 1 di 1, crash auth
+- `ST:R3/4:cleanup` — refactor, step 3 di 4, cleanup
 
 ---
 
 ## Requisiti
 
 - `bash`
-- `python3` / `python` (stdlib: json, re, sys) — rilevato automaticamente
-- `git`
 - `curl`
-- `gh` (GitHub CLI) — opzionale, per la ricerca snippet su GitHub
+- `gh` (GitHub CLI) — opzionale, fallback su `curl` contro l'API pubblica GitHub
 
 Zero dipendenze npm/pip. Funziona su qualsiasi macchina Unix con bash.
 
