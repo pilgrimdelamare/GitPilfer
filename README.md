@@ -1,6 +1,6 @@
 # GitPilfer
 
-A Claude Code skill that searches GitHub for existing solutions before writing code from scratch, and maintains session state across conversations.
+A Claude Code and Windsurf skill that searches GitHub for existing solutions before writing code from scratch, and maintains session state across conversations.
 
 What it does:
 - Searches GitHub for reusable code before starting any feature task
