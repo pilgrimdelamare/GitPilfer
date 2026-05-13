@@ -24,12 +24,27 @@ See [PriceWatch](https://github.com/pilgrimdelamare/pricewatch) — a real proje
 
 ## Install
 
+### Claude Code
+
 ```bash
 git clone https://github.com/pilgrimdelamare/GitPilfer.git
 cp -r GitPilfer/gitpilfer ~/.claude/skills/
 ```
 
-Once installed, GitPilfer activates automatically in every Claude Code session on any project.
+GitPilfer activates automatically in every Claude Code session on any project.
+
+### Windsurf — global (all projects)
+
+Open **Settings → Cascade → Global Rules** and paste the content of `gitpilfer/SKILL.md`.
+
+### Windsurf — single project
+
+Create a `.windsurfrules` file in the project root:
+
+```bash
+git clone https://github.com/pilgrimdelamare/GitPilfer.git
+cat GitPilfer/gitpilfer/SKILL.md > /path/to/your-project/.windsurfrules
+```
 
 ---
 
@@ -129,12 +144,27 @@ Vedi [PriceWatch](https://github.com/pilgrimdelamare/pricewatch) — un progetto
 
 ## Installazione
 
+### Claude Code
+
 ```bash
 git clone https://github.com/pilgrimdelamare/GitPilfer.git
 cp -r GitPilfer/gitpilfer ~/.claude/skills/
 ```
 
-Una volta installata, GitPilfer si attiva automaticamente in ogni sessione di Claude Code su qualsiasi progetto.
+GitPilfer si attiva automaticamente in ogni sessione di Claude Code su qualsiasi progetto.
+
+### Windsurf — globale (tutti i progetti)
+
+Apri **Settings → Cascade → Global Rules** e incolla il contenuto di `gitpilfer/SKILL.md`.
+
+### Windsurf — singolo progetto
+
+Crea un file `.windsurfrules` nella root del progetto:
+
+```bash
+git clone https://github.com/pilgrimdelamare/GitPilfer.git
+cat GitPilfer/gitpilfer/SKILL.md > /percorso/tuo-progetto/.windsurfrules
+```
 
 ---
 
